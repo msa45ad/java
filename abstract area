@@ -1,0 +1,76 @@
+import java.util.*;
+abstract class Shape
+{
+    double a;
+    double b;
+    double c;
+    
+    Shape(double a,double b)
+    {
+        this.a=a;
+        this.b=b;
+    }
+    Shape(double c)
+    {
+        this.c=c;
+    }
+    abstract double area();
+}
+class rectangle extends Shape
+{
+    rectangle(double length,double breadth)
+    {
+        super(length,breadth);
+    }
+    double area()
+    {
+        return a*b;
+    }
+}
+class triangle extends Shape
+{
+    triangle(double base,double height)
+    {
+        super(base,height);
+    }
+    double area()
+    {
+        return 0.5*b*a;
+    }
+    
+}
+class circle extends Shape
+{
+    circle(double radius)
+    {
+        super(radius);
+    }
+    double area()
+    {
+        return 3.14*c*c;
+    }
+}
+class geometry
+{
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("enter the length of the rectangle:");
+        double length=sc.nextDouble();
+        System.out.println("enter the breadth of the rectangle:");
+        double breadth=sc.nextDouble();
+        rectangle rec=new rectangle(length,breadth);
+        System.out.println("area of the rectangle is"+" "+rec.area());
+        System.out.println("enter the base of the triangle:");
+        double base=sc.nextDouble();
+        System.out.println("enter the height of the rectangle:");
+        double height=sc.nextDouble();
+        triangle t=new triangle(base,height);
+        System.out.println("area of the triangle is"+" "+t.area());
+        System.out.println("Enter the radius of circle:");
+        double r=sc.nextDouble();
+        circle c=new circle(r);
+        System.out.println("area of the circlee is"+" "+c.area());
+        sc.close();
+    }
+}
