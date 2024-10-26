@@ -1,0 +1,249 @@
+import java.util.*;
+class bank
+{
+    String customername;
+    int accountnumber;
+    String type;
+    bank(String name,int accnum,String type)
+    {
+        this.customername=name;
+        this.accountnumber=accnum;
+        this.type=type;
+    }
+    bank(){
+        
+    }
+    bank(String name,int accnum)
+    {
+        this.customername=name;
+        this.accountnumber=accnum;
+    
+    }
+}
+class SavingAccount extends bank
+{
+    double balance;
+    double interest=3;
+    SavingAccount(String name,int accnum,String type)
+    {
+        super(name,accnum,type);
+    }
+    void deposit(double fund)
+    {
+        System.out.println("Amount credited is:"+" "+fund);
+        balance=balance+fund;
+        balance=balance+((interest*balance)/100);
+    }
+    void ShowBalance()
+    {
+        System.out.println("Balance:"+" "+balance);
+    }
+    void WithDraw(double fund)
+    {
+        if(balance<fund)
+        {
+            System.out.println("insufficient balance");
+        }
+        else
+        {
+            System.out.println("Amount debited is:"+" "+fund);
+            balance=balance-fund;
+        }
+        
+    }
+    void addBalance(double fund)
+    {
+        balance=fund;
+    }
+    void display()
+    {
+        System.out.println("Account Name:"+" "+this.customername);
+        System.out.println("Account Nnumber:"+" "+this.accountnumber);
+        System.out.println("Account type:"+" "+this.type);
+        System.out.println("Account Balance:"+" "+balance);
+    }
+}
+    class CurrentAccount extends bank
+    {
+        double balance;
+        CurrentAccount(String name,int accnum,String type)
+        {
+            super(name,accnum);
+            this.type=type;
+            
+        }
+        void deposit(double fund)
+        {
+            System.out.println("Amount credited is:"+" "+fund);
+            balance=balance+fund;
+        }
+        void addBalance(double fund)
+        {
+            balance=fund;
+        }
+        void WithDraw(double fund)
+        {
+            if(fund>balance)
+            {
+                System.out.println("insufficient fund");
+            }
+            else
+            {
+                  System.out.println("Amount debited is"+" "+fund);
+                  balance=balance-fund;
+            }
+        }
+        void ShowBalance()
+        {
+            if(balance<5000)
+            {
+                System.out.println("Amount of 300 deducted due to meagre amount");
+                balance=balance-300;
+            }
+            System.out.println("Balance:"+" "+balance);
+        }
+        void ChequeBook(double fund)
+        {
+            if(fund>balance)
+            {
+                System.out.println("insufficient fund");
+            }
+            else
+            {
+                System.out.println("Amount of "+" "+fund+"sanctioned");
+                balance=balance-fund;
+                
+            }
+        }
+        void display()
+        {
+            System.out.println("Account Name:"+" "+this.customername);
+            System.out.println("Account Nnumber:"+" "+this.accountnumber);
+            System.out.println("Account type:"+" "+this.type);
+            System.out.println("Account Balance:"+" "+balance);
+        }
+    }
+    
+
+class Account
+{
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the name of the account:");
+        String name=sc.nextLine();
+        System.out.println("enter the account number:");
+        int num=sc.nextInt();
+        sc.nextLine();
+        System.out.println("Enter the type of account (SavingAccount (or) CurrentAccount:");
+        String type=sc.nextLine();
+        int pref;
+        if(type.equals("SavingAccount"))
+        {
+            System.out.println("select 1 to deposit()");
+            System.out.println("Select 2 to ShowBalance()");
+            System.out.println("Select 3 to Withdraw()");
+            System.out.println("Select 4 to addBalance()");
+            System.out.println("select 5 to display()");
+            System.out.println("select 6 to exit");
+            SavingAccount s=new SavingAccount(name,num,type);
+            double amount;
+            while(true)
+            {
+                System.out.println("enter your preference:");
+                 pref=sc.nextInt();
+                if(pref==1)
+                {
+                     System.out.println("Enter the amount to be deposited:");
+                    amount=sc.nextDouble();
+                    s.deposit(amount);
+                }
+                else if(pref==2)
+                {
+                    s.ShowBalance();
+                }
+                else if(pref==3)
+                {
+                    System.out.println("Enter the amount to WithDraw:");
+                    amount=sc.nextDouble();
+                    s.WithDraw(amount);
+                }
+                else if(pref==4)
+                {
+                    System.out.println("Add your balance to the account:");
+                    amount=sc.nextDouble();
+                    s.addBalance(amount);
+                    
+                }
+                 else if(pref==5)
+                 {
+                     s.display();
+                 }
+                else if(pref==6)
+                {
+                    break;
+                }
+                else{
+                    System.out.println("no preference found");
+                }
+            }
+        }
+        else if(type.equals("CurrentAccount"))
+        {
+            System.out.println("select 1 to deposit()");
+            System.out.println("Select 2 to ShowBalance()");
+            System.out.println("Select 3 to Withdraw()");
+            System.out.println("Select 4 to addBalance()");
+            System.out.println("select 5 to chequebook()");
+            System.out.println("select 6 to display()");
+            System.out.println("select 7 to exit()");
+            CurrentAccount c=new CurrentAccount(name,num,type);
+            double amount;
+            while(true)
+            {
+                System.out.println("enter your preference:");
+                pref=sc.nextInt();
+                if(pref==1)
+                {
+                    System.out.println("Enter the amount to be deposited:");
+                    amount=sc.nextDouble();
+                    c.deposit(amount);
+                }
+                else if(pref==2)
+                {
+                    c.ShowBalance();
+                }
+                else if(pref==3)
+                {
+                    System.out.println("Enter the amount to WithDraw:");
+                    amount=sc.nextDouble();
+                    c.WithDraw(amount);
+                }
+                else if(pref==4)
+                {
+                    System.out.println("Add your balance to the account:");
+                    amount=sc.nextDouble();
+                    c.addBalance(amount);
+                    
+                }
+                else if(pref==5)
+                {
+                    System.out.println("enter the amount to be sanctioned");
+                    amount=sc.nextDouble();
+                    c.ChequeBook(amount);
+                }
+                else if(pref==6)
+                {
+                    c.display();
+                }
+                else if(pref==7)
+                {
+                    break;
+                }
+                else{
+                    System.out.println("no preference found");
+                }
+            }
+        }
+}
+}
