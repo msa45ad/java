@@ -1,0 +1,73 @@
+class Gen<T>
+{
+   T ob;
+   Gen(T O)
+   {
+       ob=O;
+   }
+   T getob()
+   {
+      return ob;
+   }
+   void ShowType()
+   {
+     System.out.println("Type of T is"+" "+ob.getClass().getName());
+   }
+}
+class GenDemo
+{
+   public static void main(String args[])
+   {
+        Gen<Integer>iob;
+        iob=new Gen<Integer>(88); //AutoBoxing
+        iob.ShowType();
+        int b=iob.getob(); //AutoUnboxing
+        System.out.println("Auto unboxing value is"+" "+b);
+        Gen<Double> dob=new Gen<Double>(3.14);
+        dob.ShowType();
+        double m=dob.getob();
+        System.out.println("Auto unboxing value is"+" "+m);
+  }
+}
+
+
+
+//double parameters
+
+
+
+class TwoGen<T,V>
+{
+   T ob1;
+   V ob2;
+   TwoGen(T O,V M)
+   {
+       ob1=O;
+       ob2=M;
+   }
+   T getob1()
+   {
+      return ob1;
+   }
+   V getob2()
+   {
+     return ob2;
+   }
+   void ShowType()
+   {
+     System.out.println("Type of T is"+" "+ob1.getClass().getName());
+     System.out.println("Type of V is"+" "+ob2.getClass().getName());
+   }
+}
+class Demo
+{
+   public static void main(String args[])
+   {
+        TwoGen<Integer,Double>iob=new TwoGen<>(88,3.141); //AutoBoxing
+        iob.ShowType();
+        int b=iob.getob1(); //AutoUnboxing
+        System.out.println("Auto unboxing value is"+" "+b);
+        double d=iob.getob2();
+        System.out.println("Auto unboxing value is"+" "+d);
+  }
+}
